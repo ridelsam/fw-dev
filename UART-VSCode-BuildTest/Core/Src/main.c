@@ -109,7 +109,7 @@ int main(void)
 
 
   // The string we want to send
-  char msg[] = "Hello World!\r\n";
+  char msg[] = "Hello2World!\r\n";
   
   /* USER CODE END 2 */
 
