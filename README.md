@@ -1,23 +1,50 @@
 # fw-dev
 STM32 platform: firmware development project repo
 
-This project is intended to refresh my knowledge on entire bare-metal firmware development process without using any automated GUI tools. Development, compilation, build, debugging and flashing will all be done through the WSL VSCode terminal. 
+This project is intended to refresh and further my knowledge on entire bare-metal firmware development process.
 
--embedded basics
+1. Embedded System Architecture:
 
--embedded driver development (SPI, I2C, UART, USB)
+Learn how microcontrollers (MCUs) and microprocessors (MPUs) work.
+Understand memory types (RAM, ROM, flash, EEPROM).
+Get familiar with system buses (address, data, control) and peripherals.
+Study interrupt handling and timing.
 
--timers, pwm, can, low power modes
+2. Programming and Debugging:
 
--UML state machines
+Master C/C++ for embedded systems.
+Learn how to use debugging tools like GDB, JTAG, and SWD.
+Understand real-time operating systems (RTOS) and when to use them.
 
--FREE RTOS
+3. Low-Level Programming:
 
--DMA
+Work with hardware registers and low-level peripherals.
+Learn about bit manipulation, timing, and optimization for speed and size.
+Understand memory management, including stack, heap, and memory-mapped I/O.
 
--Bootloader development
+4. Communication Protocols:
 
--embedded linux
+Study common communication protocols like I2C, SPI, UART, and CAN.
+Understand networking protocols (Ethernet, TCP/IP, etc.) for embedded devices.
 
--linux device driver development 
+5. Firmware Development Workflow:
 
+Learn how to use version control (Git) and build systems (Makefiles, CMake).
+Understand the process of flashing firmware to embedded devices.
+Familiarize yourself with debugging and testing tools.
+
+6. Power Management:
+
+Study techniques for managing power consumption in embedded systems.
+Learn about power modes and techniques like sleep and deep sleep.
+
+7. Design Considerations:
+
+Learn about hardware/software co-design and working with hardware engineers.
+Understand safety, security, and reliability concerns in embedded systems.
+
+8. Performance Optimization:
+
+Learn how to optimize code for both performance and memory usage.
+Understand timing constraints and real-time systems.
+Study profiling and tuning methods.
