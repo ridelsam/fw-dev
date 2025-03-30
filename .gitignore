@@ -1,2 +1,14 @@
-tools/
+# Ignore build directories
+/build/
+/dist/
+
+# Ignore editor files
 .vscode/
+.idea/
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore log files
+*.log
