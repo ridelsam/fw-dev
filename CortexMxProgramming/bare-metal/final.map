@@ -17,7 +17,7 @@ LOAD main.o
 LOAD led.o
 LOAD stm32_startup.o
 
-.text           0x0000000008000000      0x7e0
+.text           0x0000000008000000      0x7dc
  *(.isr_vector)
  .isr_vector    0x0000000008000000      0x17c stm32_startup.o
                 0x0000000008000000                vectors
@@ -51,7 +51,7 @@ LOAD stm32_startup.o
                 0x000000000800067c                led_init_all
                 0x00000000080006f0                led_on
                 0x0000000008000720                led_off
- .text          0x0000000008000750       0x90 stm32_startup.o
+ .text          0x0000000008000750       0x8c stm32_startup.o
                 0x0000000008000750                RTC_Alarm_IRQHandler
                 0x0000000008000750                HASH_RNG_IRQHandler
                 0x0000000008000750                EXTI2_IRQHandler
@@ -140,28 +140,28 @@ LOAD stm32_startup.o
                 0x0000000008000750                DMA1_Stream3_IRQHandler
                 0x0000000008000756                Reset_Handler
  *(.rodata)
-                0x00000000080007e0                . = ALIGN (0x4)
-                0x00000000080007e0                _etext = .
+                0x00000000080007dc                . = ALIGN (0x4)
+                0x00000000080007dc                _etext = .
 
-.glue_7         0x00000000080007e0        0x0
- .glue_7        0x00000000080007e0        0x0 linker stubs
+.glue_7         0x00000000080007dc        0x0
+ .glue_7        0x00000000080007dc        0x0 linker stubs
 
-.glue_7t        0x00000000080007e0        0x0
- .glue_7t       0x00000000080007e0        0x0 linker stubs
+.glue_7t        0x00000000080007dc        0x0
+ .glue_7t       0x00000000080007dc        0x0 linker stubs
 
-.vfp11_veneer   0x00000000080007e0        0x0
- .vfp11_veneer  0x00000000080007e0        0x0 linker stubs
+.vfp11_veneer   0x00000000080007dc        0x0
+ .vfp11_veneer  0x00000000080007dc        0x0 linker stubs
 
-.v4_bx          0x00000000080007e0        0x0
- .v4_bx         0x00000000080007e0        0x0 linker stubs
+.v4_bx          0x00000000080007dc        0x0
+ .v4_bx         0x00000000080007dc        0x0 linker stubs
 
-.iplt           0x00000000080007e0        0x0
- .iplt          0x00000000080007e0        0x0 main.o
+.iplt           0x00000000080007dc        0x0
+ .iplt          0x00000000080007dc        0x0 main.o
 
-.rel.dyn        0x00000000080007e0        0x0
- .rel.iplt      0x00000000080007e0        0x0 main.o
+.rel.dyn        0x00000000080007dc        0x0
+ .rel.iplt      0x00000000080007dc        0x0 main.o
 
-.data           0x0000000020000000        0x4 load address 0x00000000080007e0
+.data           0x0000000020000000        0x4 load address 0x00000000080007dc
                 0x0000000020000000                _sdata = .
  *(.data)
  .data          0x0000000020000000        0x1 main.o
@@ -172,10 +172,10 @@ LOAD stm32_startup.o
  *fill*         0x0000000020000001        0x3 
                 0x0000000020000004                _data = .
 
-.igot.plt       0x0000000020000004        0x0 load address 0x00000000080007e4
+.igot.plt       0x0000000020000004        0x0 load address 0x00000000080007e0
  .igot.plt      0x0000000020000004        0x0 main.o
 
-.bss            0x0000000020000004       0x54 load address 0x00000000080007e4
+.bss            0x0000000020000004       0x54 load address 0x00000000080007e0
                 0x0000000020000004                _sbss = .
  *(.bss)
  .bss           0x0000000020000004        0x4 main.o

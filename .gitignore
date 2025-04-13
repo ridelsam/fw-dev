@@ -5,6 +5,7 @@
 # Ignore editor files
 .vscode/
 .idea/
+.settings/
 
 # Ignore OS-specific files
 .DS_Store
@@ -12,3 +13,6 @@ Thumbs.db
 
 # Ignore log files
 *.log
+
+#ignore metadata
+.metadata/
