@@ -140,6 +140,36 @@ typedef struct
 } RCC_RegDef_t;
 
 /*
+ * peripheral register definition structure for EXTI
+ */
+typedef struct
+{
+	__vo uint32_t IMR;    /*!< Give a short description,          	  	    Address offset: 0x00 */
+	__vo uint32_t EMR;    /*!< TODO,                						Address offset: 0x04 */
+	__vo uint32_t RTSR;   /*!< TODO,  									     Address offset: 0x08 */
+	__vo uint32_t FTSR;   /*!< TODO, 										Address offset: 0x0C */
+	__vo uint32_t SWIER;  /*!< TODO,  									   Address offset: 0x10 */
+	__vo uint32_t PR;     /*!< TODO,                   					   Address offset: 0x14 */
+
+}EXTI_RegDef_t;
+
+
+/*
+ * peripheral register definition structure for SYSCFG
+ */
+typedef struct
+{
+	__vo uint32_t MEMRMP;       /*!< Give a short description,                    Address offset: 0x00      */
+	__vo uint32_t PMC;          /*!< TODO,     									  Address offset: 0x04      */
+	__vo uint32_t EXTICR[4];    /*!< TODO , 									  Address offset: 0x08-0x14 */
+	uint32_t      RESERVED1[2];  /*!< TODO          							  Reserved, 0x18-0x1C    	*/
+	__vo uint32_t CMPCR;        /*!< TODO         								  Address offset: 0x20      */
+	uint32_t      RESERVED2[2];  /*!<                                             Reserved, 0x24-0x28 	    */
+	__vo uint32_t CFGR;         /*!< TODO                                         Address offset: 0x2C   	*/
+} SYSCFG_RegDef_t;
+
+
+/*
  * peripheral definitions ( Peripheral base addresses typecasted to xxx_RegDef_t)
  */
 
@@ -153,8 +183,9 @@ typedef struct
 #define GPIOH  				((GPIO_RegDef_t*)GPIOH_BASEADDR)
 #define GPIOI  				((GPIO_RegDef_t*)GPIOI_BASEADDR)
 
-
 #define RCC 				((RCC_RegDef_t*)RCC_BASEADDR)
+#define EXTI				((EXTI_RegDef_t*)EXTI_BASEADDR)
+#define SYSCFG				((SYSCFG_RegDef_t*)SYSCFG_BASEADDR)
 
 
 /*
@@ -250,6 +281,26 @@ typedef struct
  */
 #define SYSCFG_PCLK_DI() (RCC->APB2ENR &= ~(1 << 14))
 
+/*
+ *  returns port code for given GPIOx base address
+ */
+/*
+ * This macro returns a code( between 0 to 7) for a given GPIO base address(x)
+ */
+#define GPIO_BASEADDR_TO_CODE(x)      ( (x == GPIOA)?0:\
+										(x == GPIOB)?1:\
+										(x == GPIOC)?2:\
+										(x == GPIOD)?3:\
+								        (x == GPIOE)?4:\
+								        (x == GPIOF)?5:\
+								        (x == GPIOG)?6:\
+								        (x == GPIOH)?7: \
+								        (x == GPIOI)?8:0)
+
+
+
+
+
 //some generic macros
 
 #define ENABLE 				1
@@ -260,6 +311,6 @@ typedef struct
 #define GPIO_PIN_RESET      RESET
 
 
-
+#include "stm32f407xx_gpio_driver.h"
 
 #endif /* INC_STM32F407XX_H_ */

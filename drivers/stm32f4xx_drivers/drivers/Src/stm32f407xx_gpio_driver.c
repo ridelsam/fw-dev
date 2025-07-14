@@ -197,6 +197,8 @@ void GPIO_Init(GPIO_Handle_t *pGPIOHandle)
 
 }
 
+
+
 /*********************************************************************
  * @fn      		  - GPIO_DeInit
  *
@@ -362,7 +364,6 @@ void GPIO_ToggleOutputPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber)
 {
 	pGPIOx->ODR  ^= ( 1 << PinNumber);
 }
-
 
 
 
