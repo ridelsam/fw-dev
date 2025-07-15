@@ -252,6 +252,12 @@ Discarded input sections
                 0x0000000000000000       0x4a ./drivers/Src/stm32f407xx_gpio_driver.o
  .text.GPIO_WriteToOutputPort
                 0x0000000000000000       0x1e ./drivers/Src/stm32f407xx_gpio_driver.o
+ .text.GPIO_IRQInterruptConfig
+                0x0000000000000000      0x10c ./drivers/Src/stm32f407xx_gpio_driver.o
+ .text.GPIO_IRQPriorityConfig
+                0x0000000000000000       0x54 ./drivers/Src/stm32f407xx_gpio_driver.o
+ .text.GPIO_IRQHandling
+                0x0000000000000000       0x40 ./drivers/Src/stm32f407xx_gpio_driver.o
  .debug_macro   0x0000000000000000      0xa84 ./drivers/Src/stm32f407xx_gpio_driver.o
  .debug_macro   0x0000000000000000       0x22 ./drivers/Src/stm32f407xx_gpio_driver.o
  .debug_macro   0x0000000000000000       0x8e ./drivers/Src/stm32f407xx_gpio_driver.o
@@ -259,7 +265,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x103 ./drivers/Src/stm32f407xx_gpio_driver.o
  .debug_macro   0x0000000000000000       0x6a ./drivers/Src/stm32f407xx_gpio_driver.o
  .debug_macro   0x0000000000000000      0x1df ./drivers/Src/stm32f407xx_gpio_driver.o
- .debug_macro   0x0000000000000000      0x29d ./drivers/Src/stm32f407xx_gpio_driver.o
+ .debug_macro   0x0000000000000000      0x36c ./drivers/Src/stm32f407xx_gpio_driver.o
  .debug_macro   0x0000000000000000       0xc4 ./drivers/Src/stm32f407xx_gpio_driver.o
  .text          0x0000000000000000        0x0 c:/st/stm32cubeide_1.9.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.0.202111181127/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-errno.o)
  .data          0x0000000000000000        0x0 c:/st/stm32cubeide_1.9.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.0.202111181127/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-errno.o)
@@ -627,30 +633,30 @@ LOAD c:/st/stm32cubeide_1.9.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.exte
 LOAD c:/st/stm32cubeide_1.9.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.0.202111181127/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libm.a
 LOAD c:/st/stm32cubeide_1.9.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.0.202111181127/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m+fp/hard\libgcc.a
 
-.debug_info     0x0000000000000000      0xb53
+.debug_info     0x0000000000000000      0xc1b
  .debug_info    0x0000000000000000      0x2a3 ./Src/002led_button.o
  .debug_info    0x00000000000002a3       0x22 ./Startup/startup_stm32f407vgtx.o
- .debug_info    0x00000000000002c5      0x88e ./drivers/Src/stm32f407xx_gpio_driver.o
+ .debug_info    0x00000000000002c5      0x956 ./drivers/Src/stm32f407xx_gpio_driver.o
 
 .debug_abbrev   0x0000000000000000      0x2bb
  .debug_abbrev  0x0000000000000000      0x125 ./Src/002led_button.o
  .debug_abbrev  0x0000000000000125       0x12 ./Startup/startup_stm32f407vgtx.o
  .debug_abbrev  0x0000000000000137      0x184 ./drivers/Src/stm32f407xx_gpio_driver.o
 
-.debug_aranges  0x0000000000000000       0xa8
+.debug_aranges  0x0000000000000000       0xc0
  .debug_aranges
                 0x0000000000000000       0x28 ./Src/002led_button.o
  .debug_aranges
                 0x0000000000000028       0x28 ./Startup/startup_stm32f407vgtx.o
  .debug_aranges
-                0x0000000000000050       0x58 ./drivers/Src/stm32f407xx_gpio_driver.o
+                0x0000000000000050       0x70 ./drivers/Src/stm32f407xx_gpio_driver.o
 
-.debug_ranges   0x0000000000000000       0x80
+.debug_ranges   0x0000000000000000       0x98
  .debug_ranges  0x0000000000000000       0x18 ./Src/002led_button.o
  .debug_ranges  0x0000000000000018       0x20 ./Startup/startup_stm32f407vgtx.o
- .debug_ranges  0x0000000000000038       0x48 ./drivers/Src/stm32f407xx_gpio_driver.o
+ .debug_ranges  0x0000000000000038       0x60 ./drivers/Src/stm32f407xx_gpio_driver.o
 
-.debug_macro    0x0000000000000000     0x134a
+.debug_macro    0x0000000000000000     0x1419
  .debug_macro   0x0000000000000000       0x92 ./Src/002led_button.o
  .debug_macro   0x0000000000000092      0xa84 ./Src/002led_button.o
  .debug_macro   0x0000000000000b16       0x22 ./Src/002led_button.o
@@ -659,29 +665,29 @@ LOAD c:/st/stm32cubeide_1.9.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.exte
  .debug_macro   0x0000000000000c17      0x103 ./Src/002led_button.o
  .debug_macro   0x0000000000000d1a       0x6a ./Src/002led_button.o
  .debug_macro   0x0000000000000d84      0x1df ./Src/002led_button.o
- .debug_macro   0x0000000000000f63      0x29d ./Src/002led_button.o
- .debug_macro   0x0000000000001200       0xc4 ./Src/002led_button.o
- .debug_macro   0x00000000000012c4       0x86 ./drivers/Src/stm32f407xx_gpio_driver.o
+ .debug_macro   0x0000000000000f63      0x36c ./Src/002led_button.o
+ .debug_macro   0x00000000000012cf       0xc4 ./Src/002led_button.o
+ .debug_macro   0x0000000000001393       0x86 ./drivers/Src/stm32f407xx_gpio_driver.o
 
-.debug_line     0x0000000000000000      0xd60
+.debug_line     0x0000000000000000      0xe4f
  .debug_line    0x0000000000000000      0x44a ./Src/002led_button.o
  .debug_line    0x000000000000044a       0x84 ./Startup/startup_stm32f407vgtx.o
- .debug_line    0x00000000000004ce      0x892 ./drivers/Src/stm32f407xx_gpio_driver.o
+ .debug_line    0x00000000000004ce      0x981 ./drivers/Src/stm32f407xx_gpio_driver.o
 
-.debug_str      0x0000000000000000     0x516a
- .debug_str     0x0000000000000000     0x4e8d ./Src/002led_button.o
-                                       0x4ff9 (size before relaxing)
- .debug_str     0x0000000000004e8d       0x31 ./Startup/startup_stm32f407vgtx.o
+.debug_str      0x0000000000000000     0x54c4
+ .debug_str     0x0000000000000000     0x5172 ./Src/002led_button.o
+                                       0x52de (size before relaxing)
+ .debug_str     0x0000000000005172       0x31 ./Startup/startup_stm32f407vgtx.o
                                          0x71 (size before relaxing)
- .debug_str     0x0000000000004ebe      0x2ac ./drivers/Src/stm32f407xx_gpio_driver.o
-                                       0x5273 (size before relaxing)
+ .debug_str     0x00000000000051a3      0x321 ./drivers/Src/stm32f407xx_gpio_driver.o
+                                       0x55cd (size before relaxing)
 
 .comment        0x0000000000000000       0x50
  .comment       0x0000000000000000       0x50 ./Src/002led_button.o
                                          0x51 (size before relaxing)
  .comment       0x0000000000000050       0x51 ./drivers/Src/stm32f407xx_gpio_driver.o
 
-.debug_frame    0x0000000000000000      0x1d0
+.debug_frame    0x0000000000000000      0x248
  .debug_frame   0x0000000000000000       0x58 ./Src/002led_button.o
- .debug_frame   0x0000000000000058      0x14c ./drivers/Src/stm32f407xx_gpio_driver.o
- .debug_frame   0x00000000000001a4       0x2c c:/st/stm32cubeide_1.9.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.0.202111181127/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-init.o)
+ .debug_frame   0x0000000000000058      0x1c4 ./drivers/Src/stm32f407xx_gpio_driver.o
+ .debug_frame   0x000000000000021c       0x2c c:/st/stm32cubeide_1.9.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.0.202111181127/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-init.o)
