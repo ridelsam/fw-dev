@@ -1,4 +1,4 @@
-Src/007spi_txonly_arduino.o: ../Src/007spi_txonly_arduino.c \
+Src/008spi_cmd_handling.o: ../Src/008spi_cmd_handling.c \
  C:/Users/ridel/Documents/fw-dev/drivers/stm32f4xx_drivers/drivers/Inc/stm32f407xx.h \
  C:/Users/ridel/Documents/fw-dev/drivers/stm32f4xx_drivers/drivers/Inc/stm32f407xx_gpio_driver.h \
  C:/Users/ridel/Documents/fw-dev/drivers/stm32f4xx_drivers/drivers/Inc/stm32f407xx.h \
