@@ -29,23 +29,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  12 .ARM.attributes 00000030  00000000  00000000  00020038  2**0
                   CONTENTS, READONLY
- 13 .debug_info   0000143c  00000000  00000000  00020068  2**0
+ 13 .debug_info   000014f1  00000000  00000000  00020068  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_abbrev 000004f2  00000000  00000000  000214a4  2**0
+ 14 .debug_abbrev 0000051d  00000000  00000000  00021559  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_aranges 00000158  00000000  00000000  00021998  2**3
+ 15 .debug_aranges 00000168  00000000  00000000  00021a78  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_ranges 00000120  00000000  00000000  00021af0  2**3
+ 16 .debug_ranges 00000130  00000000  00000000  00021be0  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_macro  00002913  00000000  00000000  00021c10  2**0
+ 17 .debug_macro  00002913  00000000  00000000  00021d10  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   00001915  00000000  00000000  00024523  2**0
+ 18 .debug_line   000019f2  00000000  00000000  00024623  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    0000a770  00000000  00000000  00025e38  2**0
+ 19 .debug_str    0000a7a2  00000000  00000000  00026015  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .comment      00000050  00000000  00000000  000305a8  2**0
+ 20 .comment      00000050  00000000  00000000  000307b7  2**0
                   CONTENTS, READONLY
- 21 .debug_frame  000004b0  00000000  00000000  000305f8  2**2
+ 21 .debug_frame  000004fc  00000000  00000000  00030808  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -1204,7 +1204,7 @@ uint8_t GPIO_ReadFromInputPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber)
  80008ae:	4770      	bx	lr
 
 080008b0 <I2C_GenerateStartCondition>:
-static void I2C_ExecuteAddressPhaseWrite(I2C_RegDef_t *pI2Cx, uint8_t SlaveAddr);
+static void I2C_ExecuteAddressPhaseRead(I2C_RegDef_t *pI2Cx, uint8_t SlaveAddr);
 static void I2C_ClearADDRFlag(I2C_Handle_t *pI2CHandle);
 void I2C_GenerateStopCondition(I2C_RegDef_t *pI2Cx);
 
@@ -1257,6 +1257,9 @@ static void I2C_ExecuteAddressPhaseWrite(I2C_RegDef_t *pI2Cx, uint8_t SlaveAddr)
  80008fa:	4770      	bx	lr
 
 080008fc <I2C_ClearADDRFlag>:
+	pI2Cx->DR = SlaveAddr;
+}
+
 
 static void I2C_ClearADDRFlag(I2C_Handle_t *pI2CHandle )
 {
@@ -2059,6 +2062,8 @@ void I2C_MasterSendData(I2C_Handle_t *pI2CHandle,uint8_t *pTxbuffer, uint32_t Le
  8000d88:	bd80      	pop	{r7, pc}
 
 08000d8a <I2C_ManageAcking>:
+
+}
 
 
 void I2C_ManageAcking(I2C_RegDef_t *pI2Cx, uint8_t EnorDi)
