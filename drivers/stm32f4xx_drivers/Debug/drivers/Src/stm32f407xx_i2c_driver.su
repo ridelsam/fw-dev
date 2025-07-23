@@ -10,3 +10,4 @@
 ../drivers/Src/stm32f407xx_i2c_driver.c:303:6:I2C_DeInit	16	static
 ../drivers/Src/stm32f407xx_i2c_driver.c:318:9:I2C_GetFlagStatus	16	static
 ../drivers/Src/stm32f407xx_i2c_driver.c:329:6:I2C_MasterSendData	24	static
+../drivers/Src/stm32f407xx_i2c_driver.c:375:6:I2C_ManageAcking	16	static
