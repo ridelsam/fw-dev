@@ -29,23 +29,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  12 .ARM.attributes 00000030  00000000  00000000  00020018  2**0
                   CONTENTS, READONLY
- 13 .debug_info   00001524  00000000  00000000  00020048  2**0
+ 13 .debug_info   000016fc  00000000  00000000  00020048  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_abbrev 00000518  00000000  00000000  0002156c  2**0
+ 14 .debug_abbrev 00000536  00000000  00000000  00021744  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_aranges 00000168  00000000  00000000  00021a88  2**3
+ 15 .debug_aranges 00000190  00000000  00000000  00021c80  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_ranges 00000130  00000000  00000000  00021bf0  2**3
+ 16 .debug_ranges 00000158  00000000  00000000  00021e10  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_macro  00002913  00000000  00000000  00021d20  2**0
+ 17 .debug_macro  0000298b  00000000  00000000  00021f68  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   00001a03  00000000  00000000  00024633  2**0
+ 18 .debug_line   00001c90  00000000  00000000  000248f3  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    0000a7a5  00000000  00000000  00026036  2**0
+ 19 .debug_str    0000a91f  00000000  00000000  00026583  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .comment      00000050  00000000  00000000  000307db  2**0
+ 20 .comment      00000050  00000000  00000000  00030ea2  2**0
                   CONTENTS, READONLY
- 21 .debug_frame  000004fc  00000000  00000000  0003082c  2**2
+ 21 .debug_frame  000005b4  00000000  00000000  00030ef4  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -1236,9 +1236,9 @@ uint8_t GPIO_ReadFromInputPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNumber)
  80008e2:	4770      	bx	lr
 
 080008e4 <I2C_GenerateStartCondition>:
-static void I2C_ExecuteAddressPhaseRead(I2C_RegDef_t *pI2Cx, uint8_t SlaveAddr);
-static void I2C_ClearADDRFlag(I2C_Handle_t *pI2CHandle);
-void I2C_GenerateStopCondition(I2C_RegDef_t *pI2Cx);
+static void I2C_MasterHandleTXEInterrupt(I2C_Handle_t *pI2CHandle );
+
+
 
 static void I2C_GenerateStartCondition(I2C_RegDef_t *pI2Cx)
 {
@@ -1259,172 +1259,178 @@ static void I2C_GenerateStartCondition(I2C_RegDef_t *pI2Cx)
  80008fe:	f85d 7b04 	ldr.w	r7, [sp], #4
  8000902:	4770      	bx	lr
 
-08000904 <I2C_ExecuteAddressPhaseWrite>:
+08000904 <I2C_GenerateStopCondition>:
 
-static void I2C_ExecuteAddressPhaseWrite(I2C_RegDef_t *pI2Cx, uint8_t SlaveAddr)
+
+void I2C_GenerateStopCondition(I2C_RegDef_t *pI2Cx)
 {
  8000904:	b480      	push	{r7}
  8000906:	b083      	sub	sp, #12
  8000908:	af00      	add	r7, sp, #0
  800090a:	6078      	str	r0, [r7, #4]
- 800090c:	460b      	mov	r3, r1
- 800090e:	70fb      	strb	r3, [r7, #3]
-	SlaveAddr = SlaveAddr << 1;
- 8000910:	78fb      	ldrb	r3, [r7, #3]
- 8000912:	005b      	lsls	r3, r3, #1
- 8000914:	70fb      	strb	r3, [r7, #3]
-	SlaveAddr &= ~(1); //SlaveAddr is Slave address + r/nw bit=0
- 8000916:	78fb      	ldrb	r3, [r7, #3]
- 8000918:	f023 0301 	bic.w	r3, r3, #1
- 800091c:	70fb      	strb	r3, [r7, #3]
-	pI2Cx->DR = SlaveAddr;
- 800091e:	78fa      	ldrb	r2, [r7, #3]
- 8000920:	687b      	ldr	r3, [r7, #4]
- 8000922:	611a      	str	r2, [r3, #16]
+	pI2Cx->CR1 |= ( 1 << I2C_CR1_STOP);
+ 800090c:	687b      	ldr	r3, [r7, #4]
+ 800090e:	681b      	ldr	r3, [r3, #0]
+ 8000910:	f443 7200 	orr.w	r2, r3, #512	; 0x200
+ 8000914:	687b      	ldr	r3, [r7, #4]
+ 8000916:	601a      	str	r2, [r3, #0]
 }
- 8000924:	bf00      	nop
- 8000926:	370c      	adds	r7, #12
- 8000928:	46bd      	mov	sp, r7
- 800092a:	f85d 7b04 	ldr.w	r7, [sp], #4
- 800092e:	4770      	bx	lr
+ 8000918:	bf00      	nop
+ 800091a:	370c      	adds	r7, #12
+ 800091c:	46bd      	mov	sp, r7
+ 800091e:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8000922:	4770      	bx	lr
 
-08000930 <I2C_ExecuteAddressPhaseRead>:
+08000924 <I2C_ExecuteAddressPhaseWrite>:
+
+
+
+static void I2C_ExecuteAddressPhaseWrite(I2C_RegDef_t *pI2Cx, uint8_t SlaveAddr)
+{
+ 8000924:	b480      	push	{r7}
+ 8000926:	b083      	sub	sp, #12
+ 8000928:	af00      	add	r7, sp, #0
+ 800092a:	6078      	str	r0, [r7, #4]
+ 800092c:	460b      	mov	r3, r1
+ 800092e:	70fb      	strb	r3, [r7, #3]
+	SlaveAddr = SlaveAddr << 1;
+ 8000930:	78fb      	ldrb	r3, [r7, #3]
+ 8000932:	005b      	lsls	r3, r3, #1
+ 8000934:	70fb      	strb	r3, [r7, #3]
+	SlaveAddr &= ~(1); //SlaveAddr is Slave address + r/nw bit=0
+ 8000936:	78fb      	ldrb	r3, [r7, #3]
+ 8000938:	f023 0301 	bic.w	r3, r3, #1
+ 800093c:	70fb      	strb	r3, [r7, #3]
+	pI2Cx->DR = SlaveAddr;
+ 800093e:	78fa      	ldrb	r2, [r7, #3]
+ 8000940:	687b      	ldr	r3, [r7, #4]
+ 8000942:	611a      	str	r2, [r3, #16]
+}
+ 8000944:	bf00      	nop
+ 8000946:	370c      	adds	r7, #12
+ 8000948:	46bd      	mov	sp, r7
+ 800094a:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 800094e:	4770      	bx	lr
+
+08000950 <I2C_ExecuteAddressPhaseRead>:
 
 static void I2C_ExecuteAddressPhaseRead(I2C_RegDef_t *pI2Cx, uint8_t SlaveAddr)
 {
- 8000930:	b480      	push	{r7}
- 8000932:	b083      	sub	sp, #12
- 8000934:	af00      	add	r7, sp, #0
- 8000936:	6078      	str	r0, [r7, #4]
- 8000938:	460b      	mov	r3, r1
- 800093a:	70fb      	strb	r3, [r7, #3]
+ 8000950:	b480      	push	{r7}
+ 8000952:	b083      	sub	sp, #12
+ 8000954:	af00      	add	r7, sp, #0
+ 8000956:	6078      	str	r0, [r7, #4]
+ 8000958:	460b      	mov	r3, r1
+ 800095a:	70fb      	strb	r3, [r7, #3]
 	SlaveAddr = SlaveAddr << 1;
- 800093c:	78fb      	ldrb	r3, [r7, #3]
- 800093e:	005b      	lsls	r3, r3, #1
- 8000940:	70fb      	strb	r3, [r7, #3]
+ 800095c:	78fb      	ldrb	r3, [r7, #3]
+ 800095e:	005b      	lsls	r3, r3, #1
+ 8000960:	70fb      	strb	r3, [r7, #3]
 	SlaveAddr |= 1; //SlaveAddr is Slave address + r/nw bit=1
- 8000942:	78fb      	ldrb	r3, [r7, #3]
- 8000944:	f043 0301 	orr.w	r3, r3, #1
- 8000948:	70fb      	strb	r3, [r7, #3]
+ 8000962:	78fb      	ldrb	r3, [r7, #3]
+ 8000964:	f043 0301 	orr.w	r3, r3, #1
+ 8000968:	70fb      	strb	r3, [r7, #3]
 	pI2Cx->DR = SlaveAddr;
- 800094a:	78fa      	ldrb	r2, [r7, #3]
- 800094c:	687b      	ldr	r3, [r7, #4]
- 800094e:	611a      	str	r2, [r3, #16]
+ 800096a:	78fa      	ldrb	r2, [r7, #3]
+ 800096c:	687b      	ldr	r3, [r7, #4]
+ 800096e:	611a      	str	r2, [r3, #16]
 }
- 8000950:	bf00      	nop
- 8000952:	370c      	adds	r7, #12
- 8000954:	46bd      	mov	sp, r7
- 8000956:	f85d 7b04 	ldr.w	r7, [sp], #4
- 800095a:	4770      	bx	lr
+ 8000970:	bf00      	nop
+ 8000972:	370c      	adds	r7, #12
+ 8000974:	46bd      	mov	sp, r7
+ 8000976:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 800097a:	4770      	bx	lr
 
-0800095c <I2C_ClearADDRFlag>:
+0800097c <I2C_ClearADDRFlag>:
+
 
 
 static void I2C_ClearADDRFlag(I2C_Handle_t *pI2CHandle )
 {
- 800095c:	b580      	push	{r7, lr}
- 800095e:	b084      	sub	sp, #16
- 8000960:	af00      	add	r7, sp, #0
- 8000962:	6078      	str	r0, [r7, #4]
+ 800097c:	b580      	push	{r7, lr}
+ 800097e:	b084      	sub	sp, #16
+ 8000980:	af00      	add	r7, sp, #0
+ 8000982:	6078      	str	r0, [r7, #4]
 	uint32_t dummy_read;
 	//check for device mode
 	if(pI2CHandle->pI2Cx->SR2 & ( 1 << I2C_SR2_MSL))
- 8000964:	687b      	ldr	r3, [r7, #4]
- 8000966:	681b      	ldr	r3, [r3, #0]
- 8000968:	699b      	ldr	r3, [r3, #24]
- 800096a:	f003 0301 	and.w	r3, r3, #1
- 800096e:	2b00      	cmp	r3, #0
- 8000970:	d01f      	beq.n	80009b2 <I2C_ClearADDRFlag+0x56>
+ 8000984:	687b      	ldr	r3, [r7, #4]
+ 8000986:	681b      	ldr	r3, [r3, #0]
+ 8000988:	699b      	ldr	r3, [r3, #24]
+ 800098a:	f003 0301 	and.w	r3, r3, #1
+ 800098e:	2b00      	cmp	r3, #0
+ 8000990:	d01f      	beq.n	80009d2 <I2C_ClearADDRFlag+0x56>
 	{
 		//device is in master mode
 		if(pI2CHandle->TxRxState == I2C_BUSY_IN_RX)
- 8000972:	687b      	ldr	r3, [r7, #4]
- 8000974:	7f1b      	ldrb	r3, [r3, #28]
- 8000976:	2b01      	cmp	r3, #1
- 8000978:	d112      	bne.n	80009a0 <I2C_ClearADDRFlag+0x44>
+ 8000992:	687b      	ldr	r3, [r7, #4]
+ 8000994:	7f1b      	ldrb	r3, [r3, #28]
+ 8000996:	2b01      	cmp	r3, #1
+ 8000998:	d112      	bne.n	80009c0 <I2C_ClearADDRFlag+0x44>
 		{
 			if(pI2CHandle->RxSize  == 1)
- 800097a:	687b      	ldr	r3, [r7, #4]
- 800097c:	6a1b      	ldr	r3, [r3, #32]
- 800097e:	2b01      	cmp	r3, #1
- 8000980:	d11f      	bne.n	80009c2 <I2C_ClearADDRFlag+0x66>
+ 800099a:	687b      	ldr	r3, [r7, #4]
+ 800099c:	6a1b      	ldr	r3, [r3, #32]
+ 800099e:	2b01      	cmp	r3, #1
+ 80009a0:	d11f      	bne.n	80009e2 <I2C_ClearADDRFlag+0x66>
 			{
 				//first disable the ack
 				I2C_ManageAcking(pI2CHandle->pI2Cx,DISABLE);
- 8000982:	687b      	ldr	r3, [r7, #4]
- 8000984:	681b      	ldr	r3, [r3, #0]
- 8000986:	2100      	movs	r1, #0
- 8000988:	4618      	mov	r0, r3
- 800098a:	f000 fac0 	bl	8000f0e <I2C_ManageAcking>
+ 80009a2:	687b      	ldr	r3, [r7, #4]
+ 80009a4:	681b      	ldr	r3, [r3, #0]
+ 80009a6:	2100      	movs	r1, #0
+ 80009a8:	4618      	mov	r0, r3
+ 80009aa:	f000 fab0 	bl	8000f0e <I2C_ManageAcking>
 
 				//clear the ADDR flag ( read SR1 , read SR2)
 				dummy_read = pI2CHandle->pI2Cx->SR1;
- 800098e:	687b      	ldr	r3, [r7, #4]
- 8000990:	681b      	ldr	r3, [r3, #0]
- 8000992:	695b      	ldr	r3, [r3, #20]
- 8000994:	60fb      	str	r3, [r7, #12]
+ 80009ae:	687b      	ldr	r3, [r7, #4]
+ 80009b0:	681b      	ldr	r3, [r3, #0]
+ 80009b2:	695b      	ldr	r3, [r3, #20]
+ 80009b4:	60fb      	str	r3, [r7, #12]
 				dummy_read = pI2CHandle->pI2Cx->SR2;
- 8000996:	687b      	ldr	r3, [r7, #4]
- 8000998:	681b      	ldr	r3, [r3, #0]
- 800099a:	699b      	ldr	r3, [r3, #24]
- 800099c:	60fb      	str	r3, [r7, #12]
+ 80009b6:	687b      	ldr	r3, [r7, #4]
+ 80009b8:	681b      	ldr	r3, [r3, #0]
+ 80009ba:	699b      	ldr	r3, [r3, #24]
+ 80009bc:	60fb      	str	r3, [r7, #12]
 		dummy_read = pI2CHandle->pI2Cx->SR2;
 		(void)dummy_read;
 	}
 
 
 }
- 800099e:	e010      	b.n	80009c2 <I2C_ClearADDRFlag+0x66>
+ 80009be:	e010      	b.n	80009e2 <I2C_ClearADDRFlag+0x66>
 			dummy_read = pI2CHandle->pI2Cx->SR1;
- 80009a0:	687b      	ldr	r3, [r7, #4]
- 80009a2:	681b      	ldr	r3, [r3, #0]
- 80009a4:	695b      	ldr	r3, [r3, #20]
- 80009a6:	60fb      	str	r3, [r7, #12]
+ 80009c0:	687b      	ldr	r3, [r7, #4]
+ 80009c2:	681b      	ldr	r3, [r3, #0]
+ 80009c4:	695b      	ldr	r3, [r3, #20]
+ 80009c6:	60fb      	str	r3, [r7, #12]
 			dummy_read = pI2CHandle->pI2Cx->SR2;
- 80009a8:	687b      	ldr	r3, [r7, #4]
- 80009aa:	681b      	ldr	r3, [r3, #0]
- 80009ac:	699b      	ldr	r3, [r3, #24]
- 80009ae:	60fb      	str	r3, [r7, #12]
+ 80009c8:	687b      	ldr	r3, [r7, #4]
+ 80009ca:	681b      	ldr	r3, [r3, #0]
+ 80009cc:	699b      	ldr	r3, [r3, #24]
+ 80009ce:	60fb      	str	r3, [r7, #12]
 }
- 80009b0:	e007      	b.n	80009c2 <I2C_ClearADDRFlag+0x66>
+ 80009d0:	e007      	b.n	80009e2 <I2C_ClearADDRFlag+0x66>
 		dummy_read = pI2CHandle->pI2Cx->SR1;
- 80009b2:	687b      	ldr	r3, [r7, #4]
- 80009b4:	681b      	ldr	r3, [r3, #0]
- 80009b6:	695b      	ldr	r3, [r3, #20]
- 80009b8:	60fb      	str	r3, [r7, #12]
-		dummy_read = pI2CHandle->pI2Cx->SR2;
- 80009ba:	687b      	ldr	r3, [r7, #4]
- 80009bc:	681b      	ldr	r3, [r3, #0]
- 80009be:	699b      	ldr	r3, [r3, #24]
- 80009c0:	60fb      	str	r3, [r7, #12]
-}
- 80009c2:	bf00      	nop
- 80009c4:	3710      	adds	r7, #16
- 80009c6:	46bd      	mov	sp, r7
- 80009c8:	bd80      	pop	{r7, pc}
-
-080009ca <I2C_GenerateStopCondition>:
-
-void I2C_GenerateStopCondition(I2C_RegDef_t *pI2Cx)
-{
- 80009ca:	b480      	push	{r7}
- 80009cc:	b083      	sub	sp, #12
- 80009ce:	af00      	add	r7, sp, #0
- 80009d0:	6078      	str	r0, [r7, #4]
-	pI2Cx->CR1 |= ( 1 << I2C_CR1_STOP);
  80009d2:	687b      	ldr	r3, [r7, #4]
  80009d4:	681b      	ldr	r3, [r3, #0]
- 80009d6:	f443 7200 	orr.w	r2, r3, #512	; 0x200
+ 80009d6:	695b      	ldr	r3, [r3, #20]
+ 80009d8:	60fb      	str	r3, [r7, #12]
+		dummy_read = pI2CHandle->pI2Cx->SR2;
  80009da:	687b      	ldr	r3, [r7, #4]
- 80009dc:	601a      	str	r2, [r3, #0]
+ 80009dc:	681b      	ldr	r3, [r3, #0]
+ 80009de:	699b      	ldr	r3, [r3, #24]
+ 80009e0:	60fb      	str	r3, [r7, #12]
 }
- 80009de:	bf00      	nop
- 80009e0:	370c      	adds	r7, #12
- 80009e2:	46bd      	mov	sp, r7
- 80009e4:	f85d 7b04 	ldr.w	r7, [sp], #4
- 80009e8:	4770      	bx	lr
+ 80009e2:	bf00      	nop
+ 80009e4:	3710      	adds	r7, #16
+ 80009e6:	46bd      	mov	sp, r7
+ 80009e8:	bd80      	pop	{r7, pc}
 
 080009ea <RCC_GetPLLOutputClk>:
+
+
 
 
 uint32_t RCC_GetPLLOutputClk(void)
@@ -2021,7 +2027,7 @@ void I2C_MasterSendData(I2C_Handle_t *pI2CHandle,uint8_t *pTxbuffer, uint32_t Le
  8000d54:	78fa      	ldrb	r2, [r7, #3]
  8000d56:	4611      	mov	r1, r2
  8000d58:	4618      	mov	r0, r3
- 8000d5a:	f7ff fdd3 	bl	8000904 <I2C_ExecuteAddressPhaseWrite>
+ 8000d5a:	f7ff fde3 	bl	8000924 <I2C_ExecuteAddressPhaseWrite>
 
 	//4. Confirm that address phase is completed by checking the ADDR flag in teh SR1
 	while( !  I2C_GetFlagStatus(pI2CHandle->pI2Cx,I2C_FLAG_ADDR)   );
@@ -2039,7 +2045,7 @@ void I2C_MasterSendData(I2C_Handle_t *pI2CHandle,uint8_t *pTxbuffer, uint32_t Le
 	//   Note: Until ADDR is cleared SCL will be stretched (pulled to LOW)
 	I2C_ClearADDRFlag(pI2CHandle);
  8000d72:	68f8      	ldr	r0, [r7, #12]
- 8000d74:	f7ff fdf2 	bl	800095c <I2C_ClearADDRFlag>
+ 8000d74:	f7ff fe02 	bl	800097c <I2C_ClearADDRFlag>
 
 	//6. send the data until len becomes 0
 
@@ -2112,7 +2118,7 @@ void I2C_MasterSendData(I2C_Handle_t *pI2CHandle,uint8_t *pTxbuffer, uint32_t Le
  8000dd8:	68fb      	ldr	r3, [r7, #12]
  8000dda:	681b      	ldr	r3, [r3, #0]
  8000ddc:	4618      	mov	r0, r3
- 8000dde:	f7ff fdf4 	bl	80009ca <I2C_GenerateStopCondition>
+ 8000dde:	f7ff fd91 	bl	8000904 <I2C_GenerateStopCondition>
 
 }
  8000de2:	bf00      	nop
@@ -2163,7 +2169,7 @@ void I2C_MasterReceiveData(I2C_Handle_t *pI2CHandle,uint8_t *pRxBuffer, uint8_t 
  8000e22:	79ba      	ldrb	r2, [r7, #6]
  8000e24:	4611      	mov	r1, r2
  8000e26:	4618      	mov	r0, r3
- 8000e28:	f7ff fd82 	bl	8000930 <I2C_ExecuteAddressPhaseRead>
+ 8000e28:	f7ff fd92 	bl	8000950 <I2C_ExecuteAddressPhaseRead>
 
 	//4. wait until address phase is completed by checking the ADDR flag in teh SR1
 	while( !  I2C_GetFlagStatus(pI2CHandle->pI2Cx,I2C_FLAG_ADDR)   );
@@ -2196,7 +2202,7 @@ void I2C_MasterReceiveData(I2C_Handle_t *pI2CHandle,uint8_t *pRxBuffer, uint8_t 
 		//clear the ADDR flag
 		I2C_ClearADDRFlag(pI2CHandle);
  8000e52:	68f8      	ldr	r0, [r7, #12]
- 8000e54:	f7ff fd82 	bl	800095c <I2C_ClearADDRFlag>
+ 8000e54:	f7ff fd92 	bl	800097c <I2C_ClearADDRFlag>
 
 		//wait until  RXNE becomes 1
 		while(! I2C_GetFlagStatus(pI2CHandle->pI2Cx,I2C_FLAG_RXNE) );
@@ -2219,7 +2225,7 @@ void I2C_MasterReceiveData(I2C_Handle_t *pI2CHandle,uint8_t *pRxBuffer, uint8_t 
  8000e74:	68fb      	ldr	r3, [r7, #12]
  8000e76:	681b      	ldr	r3, [r3, #0]
  8000e78:	4618      	mov	r0, r3
- 8000e7a:	f7ff fda6 	bl	80009ca <I2C_GenerateStopCondition>
+ 8000e7a:	f7ff fd43 	bl	8000904 <I2C_GenerateStopCondition>
 
 		//read data in to buffer
 		*pRxBuffer = pI2CHandle->pI2Cx->DR;
@@ -2242,7 +2248,7 @@ void I2C_MasterReceiveData(I2C_Handle_t *pI2CHandle,uint8_t *pRxBuffer, uint8_t 
 		//clear the ADDR flag
 		I2C_ClearADDRFlag(pI2CHandle);
  8000e90:	68f8      	ldr	r0, [r7, #12]
- 8000e92:	f7ff fd63 	bl	800095c <I2C_ClearADDRFlag>
+ 8000e92:	f7ff fd73 	bl	800097c <I2C_ClearADDRFlag>
 
 		//read the data until Len becomes zero
 		for ( uint32_t i = Len ; i > 0 ; i--)
@@ -2284,7 +2290,7 @@ void I2C_MasterReceiveData(I2C_Handle_t *pI2CHandle,uint8_t *pRxBuffer, uint8_t 
  8000eca:	68fb      	ldr	r3, [r7, #12]
  8000ecc:	681b      	ldr	r3, [r3, #0]
  8000ece:	4618      	mov	r0, r3
- 8000ed0:	f7ff fd7b 	bl	80009ca <I2C_GenerateStopCondition>
+ 8000ed0:	f7ff fd18 	bl	8000904 <I2C_GenerateStopCondition>
 
 			}
 
