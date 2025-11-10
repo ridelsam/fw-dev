@@ -1,6 +1,6 @@
 # STM32 Platform – Embedded Firmware Development Portfolio
 
-This repository serves as a comprehensive collection of my embedded systems projects and experiments, built primarily on the **STM32** platform. It reflects my ongoing effort to deepen and refine my understanding of **bare-metal firmware development**, **system architecture**, and **low-level programming** — from foundational concepts to advanced design practices.
+This repository serves as a comprehensive collection of my embedded systems projects and experiments, built primarily on the **STM32** platform. It reflects my ongoing effort to deepen and refine my understanding of **bare-metal firmware development**, **system architecture**, and **low-level programming**, from foundational concepts to advanced design practices.
 
 The work here spans multiple years of hands-on development, integrating learnings from various tutorials, reference designs, and self-directed projects. It also serves as a technical portfolio demonstrating my approach to embedded engineering, problem-solving, and firmware development.
 
@@ -75,6 +75,6 @@ future projects
 
 ## 🎯 Objective
 
-To continually evolve this repository into a reflection of **professional-grade firmware engineering** practices — not only documenting my learning journey but also showcasing my ability to architect, implement, and debug complex embedded systems from the ground up.
+To continually evolve this repository into a reflection of **professional-grade firmware engineering** practices, not only documenting my learning journey but also showcasing my ability to architect, implement, and debug complex embedded systems from the ground up.
 
 ---
