@@ -1,50 +1,80 @@
-# fw-dev
-STM32 platform: firmware development project repo
+# STM32 Platform – Embedded Firmware Development Portfolio
 
-This project is intended to refresh and further my knowledge on entire bare-metal firmware development process.
+This repository serves as a comprehensive collection of my embedded systems projects and experiments, built primarily on the **STM32** platform. It reflects my ongoing effort to deepen and refine my understanding of **bare-metal firmware development**, **system architecture**, and **low-level programming** — from foundational concepts to advanced design practices.
 
-1. Embedded System Architecture:
+The work here spans multiple years of hands-on development, integrating learnings from various tutorials, reference designs, and self-directed projects. It also serves as a technical portfolio demonstrating my approach to embedded engineering, problem-solving, and firmware development.
 
-Learn how microcontrollers (MCUs) and microprocessors (MPUs) work.
-Understand memory types (RAM, ROM, flash, EEPROM).
-Get familiar with system buses (address, data, control) and peripherals.
-Study interrupt handling and timing.
+---
 
-2. Programming and Debugging:
+## 🧩 Core Focus Areas
 
-Master C/C++ for embedded systems.
-Learn how to use debugging tools like GDB, JTAG, and SWD.
-Understand real-time operating systems (RTOS) and when to use them.
+### 1. Embedded System Architecture
+- Deep dive into MCU/MPU internals: memory hierarchy, buses, and peripheral interface.  
+- Exploration of interrupt handling and timing, and system-level design.  
+- Practical understanding of boot processes, clock configuration, and startup code.
 
-3. Low-Level Programming:
+### 2. Firmware Design & Debugging
+- Clean, efficient C/C++ codebases with a focus on readability and maintainability.  
+- Hands-on use of **GDB**, **ST-Link/JTAG**, and **SWD** for real-time debugging.  
+- Experimentation with bare-metal and RTOS-based (FreeRTOS) applications.  
 
-Work with hardware registers and low-level peripherals.
-Learn about bit manipulation, timing, and optimization for speed and size.
-Understand memory management, including stack, heap, and memory-mapped I/O.
+### 3. Low-Level & Peripheral Programming
+- Direct register manipulation and hardware abstraction using STM32 HAL and LL drivers.  
+- Implementation of timing-critical code, ISR management, and memory-mapped I/O.  
+- Focus on bitwise operations, performance tuning, and resource-constrained optimization.  
 
-4. Communication Protocols:
+### 4. Communication Protocols
+- Development and validation of I²C, SPI, UART, BLE, and CAN interfaces.  
+- Prototyping Ethernet and TCP/IP stack integration for connected devices.  
+- Layered design for modular communication drivers and abstraction.
 
-Study common communication protocols like I2C, SPI, UART, and CAN.
-Understand networking protocols (Ethernet, TCP/IP, etc.) for embedded devices.
+### 5. Firmware Build & Workflow
+- Use of **Makefiles**, **CMake**, and **Git** for reproducible builds and version control.  
+- Cross-compilation, linker scripting, and build optimization.  
+- Structured testing, debugging, and flashing pipelines within **VSCode + WSL** environments.
 
-5. Firmware Development Workflow:
+### 6. Power & Reliability Engineering
+- Power profiling, low-power modes, and sleep-state management.  
+- Design strategies for system robustness, safety, and fault tolerance.  
+- Consideration for hardware/software co-design and cross-discipline collaboration.
 
-Learn how to use version control (Git) and build systems (Makefiles, CMake).
-Understand the process of flashing firmware to embedded devices.
-Familiarize yourself with debugging and testing tools.
+### 7. Performance Optimization
+- Profiling execution paths and memory usage for real-time performance.  
+- Applying compiler-level optimizations and manual tuning techniques.  
+- Ensuring deterministic timing and responsiveness under tight constraints.
 
-6. Power Management:
+---
 
-Study techniques for managing power consumption in embedded systems.
-Learn about power modes and techniques like sleep and deep sleep.
+## 🚀 Project Highlights
 
-7. Design Considerations:
+Below are some representative examples of the types of projects and experiments featured in this repository:
 
-Learn about hardware/software co-design and working with hardware engineers.
-Understand safety, security, and reliability concerns in embedded systems.
+- **Bare-Metal UART, SPI, I2C Driver:** Implemented transmit and receive functionality using direct register access, with interrupt-driven buffering.  
+- **Ethernet Bring-Up (LWIP Stack):** Configured STM32F4’s MAC and PHY for basic TCP/IP communication with custom client/server code.  
 
-8. Performance Optimization:
 
-Learn how to optimize code for both performance and memory usage.
-Understand timing constraints and real-time systems.
-Study profiling and tuning methods.
+future projects
+- **FreeRTOS Task Scheduling Demo:** Explored real-time task creation, context switching, and inter-task communication mechanisms. 
+- **Custom Bootloader:** Designed a minimal bootloader for firmware update over UART, including memory mapping and vector table relocation.  
+- **I²C Temperature Sensor Interface:** Communicated with an external digital sensor using the STM32 HAL and verified data integrity over the bus.  
+
+*(Note: Some projects are in-progress or experimental — this repo will continue to evolve as I refine and expand each area.)*
+
+---
+
+## 🧰 Toolchain & Environment
+
+- **IDE/Editor:** Visual Studio Code (WSL), STM32CubeIDE  
+- **Build Systems:** Make, CMake  
+- **Compilers:** arm-none-eabi-gcc toolchain  
+- **Debugging Interfaces:** ST-Link, OpenOCD, GDB  
+- **Version Control:** Git, GitHub  
+- **OS Environment:** Ubuntu (via Windows Subsystem for Linux)
+
+---
+
+## 🎯 Objective
+
+To continually evolve this repository into a reflection of **professional-grade firmware engineering** practices — not only documenting my learning journey but also showcasing my ability to architect, implement, and debug complex embedded systems from the ground up.
+
+---
