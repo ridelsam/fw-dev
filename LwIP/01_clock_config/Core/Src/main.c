@@ -9,7 +9,7 @@ uint32_t g_hclk_freq, g_pclk1_freq, g_pclk2_freq;
 int main(void)
 {
   HAL_Init();
-  //sysclock_config();
+  sysclock_config();
 
   g_hclk_freq  = HAL_RCC_GetHCLKFreq();
   g_pclk1_freq = HAL_RCC_GetPCLK1Freq();
