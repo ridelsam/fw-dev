@@ -1,0 +1,60 @@
+# Ignore build directories
+/build/
+/dist/
+
+# Ignore editor files
+.vscode/
+.idea/
+.settings/
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore log files
+*.log
+
+#ignore metadata
+.metadata/
+
+# Ignore external libraries
+/LwIP/libraries
+
+# Build output
+*.o
+*.elf
+*.bin
+*.hex
+*.map
+*.lst
+*.su
+*.d
+*.srec
+*.axf
+
+# Build folders
+Debug/
+Release/
+build/
+cmake-build*/
+
+# IDE junk
+.settings/
+.metadata/
+loadpath/
+*.launch
+*.log
+
+# STM32CubeIDE
+*.mxproject
+*.stm32cubemx/
+MX/
+# (keep the .ioc file)
+
+# Temporary/backup files
+*~
+*.bak
+*.tmp
+*.swp
+*.swx
+*.orig
