@@ -1,4 +1,5 @@
-Core/Src/main.o: ../Core/Src/main.c \
+Core/Src/uart.o: ../Core/Src/uart.c \
+ C:/Users/ridel/Documents/fw-dev/LwIP/00_base_project/Core/Inc/uart.h \
  C:/Users/ridel/Documents/fw-dev/LwIP/00_base_project/Core/Inc/main.h \
  C:/Users/ridel/Documents/fw-dev/LwIP/00_base_project/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h \
  C:/Users/ridel/Documents/fw-dev/LwIP/00_base_project/Core/Inc/stm32f7xx_hal_conf.h \
@@ -32,9 +33,8 @@ Core/Src/main.o: ../Core/Src/main.c \
  C:/Users/ridel/Documents/fw-dev/LwIP/00_base_project/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim.h \
  C:/Users/ridel/Documents/fw-dev/LwIP/00_base_project/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h \
  C:/Users/ridel/Documents/fw-dev/LwIP/00_base_project/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h \
- C:/Users/ridel/Documents/fw-dev/LwIP/00_base_project/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h \
- C:/Users/ridel/Documents/fw-dev/LwIP/00_base_project/Core/Inc/leds.h \
- C:/Users/ridel/Documents/fw-dev/LwIP/00_base_project/Core/Inc/main.h
+ C:/Users/ridel/Documents/fw-dev/LwIP/00_base_project/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h
+C:/Users/ridel/Documents/fw-dev/LwIP/00_base_project/Core/Inc/uart.h:
 C:/Users/ridel/Documents/fw-dev/LwIP/00_base_project/Core/Inc/main.h:
 C:/Users/ridel/Documents/fw-dev/LwIP/00_base_project/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:
 C:/Users/ridel/Documents/fw-dev/LwIP/00_base_project/Core/Inc/stm32f7xx_hal_conf.h:
@@ -69,5 +69,3 @@ C:/Users/ridel/Documents/fw-dev/LwIP/00_base_project/Drivers/STM32F7xx_HAL_Drive
 C:/Users/ridel/Documents/fw-dev/LwIP/00_base_project/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h:
 C:/Users/ridel/Documents/fw-dev/LwIP/00_base_project/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:
 C:/Users/ridel/Documents/fw-dev/LwIP/00_base_project/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h:
-C:/Users/ridel/Documents/fw-dev/LwIP/00_base_project/Core/Inc/leds.h:
-C:/Users/ridel/Documents/fw-dev/LwIP/00_base_project/Core/Inc/main.h:
