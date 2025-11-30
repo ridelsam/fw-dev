@@ -4,10 +4,14 @@
 #include "main.h"
 #include "leds.h"
 #include "uart.h"
+#include "adc.h"
 
 void sysclock_config(void);
+extern ADC_HandleTypeDef hadc1;
 
 uint32_t g_hclk_freq, g_pclk1_freq, g_pclk2_freq;
+
+uint32_t g_sensor_val;
 
 int main(void)
 {
@@ -15,6 +19,7 @@ int main(void)
   sysclock_config();
   leds_init();
   uart3_tx_init();
+  adc1_pa4_init();
 
   g_hclk_freq  = HAL_RCC_GetHCLKFreq();
   g_pclk1_freq = HAL_RCC_GetPCLK1Freq();
@@ -27,8 +32,13 @@ int main(void)
   
   while (1)
   {
-    printf("Test from UART3..\n\r");
+
+    HAL_ADC_Start(&hadc1);
+    g_sensor_val = HAL_ADC_GetValue(&hadc1);
+
+    printf("sensor val: %lu\r\n",g_sensor_val);
     HAL_Delay(10);
+
   }
 
 }
